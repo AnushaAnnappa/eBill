@@ -1,0 +1,32 @@
+<div class="register-container">
+  <div class="register-header">
+    <h2>Create Account</h2>
+    <p>Please fill in your details to Register</p>
+    </div>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="mobileNo">Mobile Number:</label>
+        <input type="tel" id="mobileNo" [(ngModel)]="register.MobileNo" name="mobile" required placeholder="Enter your mobile number">
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" [(ngModel)]="register.Email" name="email" required placeholder="Enter your email address">
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" [(ngModel)]="register.Password" name="password" required placeholder="Create a password">
+      </div>
+      <div class="form-group">
+        <label for="connectionType">Connection Type:</label>
+        <select id="connectionType" [(ngModel)]="register.ConnectionType" name="connectionType" required>
+          <option value="" disabled selected>Select your connection type</option>
+          <option value="LTE">LTE</option>
+          <option value="STE">STE</option>
+        </select>
+      </div>
+      <button type="submit">Register</button>
+    </form>
+    <div class="register-footer">
+    <p>Already have an account? <a routerLink="/login">Login here</a></p>
+  </div>
+  </div>

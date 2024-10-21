@@ -1,0 +1,38 @@
+<div class="bill-view-container">
+  <div class="bill-paper">
+    <div class="bill-header">
+      <h2>Electricity Bill</h2>
+    </div>
+    <div class="bill-details" *ngIf="billDetails">
+      <table>
+        <tr>
+          <th>User ID:</th>
+          <td>{{ billDetails.userId }}</td>
+        </tr>
+        <tr>
+          <th>Opening Reading:</th>
+          <td>{{ billDetails.openingReading }}</td>
+        </tr>
+        <tr>
+          <th>Closing Reading:</th>
+          <td>{{ billDetails.closingReading }}</td>
+        </tr>
+        <tr>
+          <th>Units Consumed:</th>
+          <td>{{ billDetails.unitsConsumed }} units</td>
+        </tr>
+        <tr class="total-row">
+          <th>Bill Amount:</th>
+          <td>Rs. {{ billDetails.billAmount }}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="bill-footer">
+      <p>Thank you </p>
+    </div>
+  </div>
+  <div class="button-group">
+    <button (click)="viewBill()">View Full Bill</button>
+    <button type="button" (click)="goBack()">Back</button>
+  </div>
+</div>

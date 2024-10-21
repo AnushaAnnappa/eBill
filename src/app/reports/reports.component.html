@@ -1,0 +1,115 @@
+<div class="reports-container">
+  <h2>Reports Dashboard</h2>
+  
+  <div class="report-section">
+    <h3>Monthly Bill for All Users</h3>
+    <div class="form-group">
+      <div class="input-group">
+        <label for="monthlyBillMonth">Month:</label>
+        <select id="monthlyBillMonth" [(ngModel)]="monthlyBillMonth">
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="monthlyBillYear">Year:</label>
+        <input type="number" id="monthlyBillYear" [(ngModel)]="monthlyBillYear">
+      </div>
+    </div>
+    <button (click)="generateMonthlyBillReport()" class="btn-primary">View Monthly Bill Report</button>
+    <div class="table-container" *ngIf="monthlyReports">
+      <table>
+        <thead>
+          <tr>
+            <th>User ID</th>
+            <th>Units Consumed</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let report of monthlyReports">
+            <td>{{ report.userID }}</td>
+            <td>{{ report.unitsConsumed }}</td>
+            <td>{{ report.amount | currency:'INR' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="report-section">
+    <h3>Users Without Closing Meter</h3>
+    <div class="form-group">
+      <div class="input-group">
+        <label for="missingReadingMonth">Month:</label>
+        <select id="missingReadingMonth" [(ngModel)]="missingReadingMonth">
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="missingReadingYear">Year:</label>
+        <input type="number" id="missingReadingYear" [(ngModel)]="missingReadingYear">
+      </div>
+    </div>
+    <button (click)="generateMissingReadingReport()" class="btn-primary">View Missing Reading Report</button>
+    <ul class="user-list" *ngIf="usersWithoutClosingMeter.length > 0">
+      <li *ngFor="let user of usersWithoutClosingMeter">
+        ID: {{ user.userID }}, Opening Reading: {{ user.openingReading }}
+      </li>
+    </ul>
+  </div>
+
+  <div class="report-section">
+    <h3>Total Collections</h3>
+    <div class="form-group">
+      <div class="input-group">
+        <label for="collectionYear">Year:</label>
+        <input type="number" id="collectionYear" [(ngModel)]="collectionYear">
+      </div>
+    </div>
+    <button (click)="generateTotalCollectionsReport()" class="btn-primary">View Total Collections Report</button>
+    <div class="table-container" *ngIf="totalCollections.length > 0">
+      <table>
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Total Collection</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let collection of totalCollections">
+            <td>{{ collection.month }}</td>
+            <td>{{ collection.totalCollection | currency:'INR' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <button type="button" (click)="goBack()" class="btn-secondary">Back</button>
+</div>
+
+<div class="success-prompt" *ngIf="showSuccessPrompt">
+  Report generated successfully!
+</div>
